@@ -1,0 +1,6 @@
+**/node_modules
+**/.next
+**/target
+**/build
+**/.dart_tool
+.git

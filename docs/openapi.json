@@ -1,0 +1,5643 @@
+{
+ "openapi": "3.0.1",
+ "info": {
+  "title": "OpenAPI definition",
+  "version": "v0"
+ },
+ "servers": [
+  {
+   "url": "http://localhost:8080",
+   "description": "Generated server url"
+  }
+ ],
+ "paths": {
+  "/api/v1/materials/{id}": {
+   "put": {
+    "tags": [
+     "Materials"
+    ],
+    "operationId": "update",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/MaterialInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MaterialView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/masters/me": {
+   "put": {
+    "tags": [
+     "Masters"
+    ],
+    "operationId": "upsert",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProfileInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MasterView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/estimates/{id}": {
+   "get": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "get_2",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/EstimateView"
+        }
+       }
+      }
+     }
+    }
+   },
+   "put": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "update_1",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EstimateInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/EstimateView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/calendar/{id}": {
+   "put": {
+    "tags": [
+     "Calendar"
+    ],
+    "operationId": "update_2",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EventInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/CalendarItem"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Calendar"
+    ],
+    "operationId": "delete_1",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "boolean"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/stages/{id}/comments": {
+   "get": {
+    "tags": [
+     "Stages"
+    ],
+    "operationId": "comments",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/CommentView"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Stages"
+    ],
+    "operationId": "comment",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/CommentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/proposals/{id}/reject": {
+   "post": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "reject",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProposalView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/proposals/{id}/accept": {
+   "post": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "accept",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProposalView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects": {
+   "get": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "list",
+    "parameters": [
+     {
+      "name": "archived",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false
+      }
+     },
+     {
+      "name": "all",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false
+      }
+     },
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 0
+      }
+     },
+     {
+      "name": "size",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 20
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PageProjectView"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "create",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProjectInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProjectView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/stages": {
+   "get": {
+    "tags": [
+     "Stages"
+    ],
+    "operationId": "list_1",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/StageView"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Stages"
+    ],
+    "operationId": "add",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/StageCreate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/StageView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/reviews": {
+   "post": {
+    "tags": [
+     "Masters"
+    ],
+    "operationId": "review",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReviewInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/payments": {
+   "get": {
+    "tags": [
+     "Payments"
+    ],
+    "operationId": "list_2",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/PaymentView"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Payments"
+    ],
+    "operationId": "pay",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "Idempotency-Key",
+      "in": "header",
+      "required": false,
+      "schema": {
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PayRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/payment-requests": {
+   "post": {
+    "tags": [
+     "Payments"
+    ],
+    "operationId": "request",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RequestCommand"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/media": {
+   "get": {
+    "tags": [
+     "Media"
+    ],
+    "operationId": "list_3",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "stageId",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "category",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "name": "uploaderId",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "from",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "format": "date-time"
+      }
+     },
+     {
+      "name": "to",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "format": "date-time"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/MediaView"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Media"
+    ],
+    "operationId": "upload",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "category",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "DURING"
+      }
+     },
+     {
+      "name": "stageId",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "caption",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "required": [
+         "file"
+        ],
+        "type": "object",
+        "properties": {
+         "file": {
+          "type": "string",
+          "format": "binary"
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MediaView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/materials": {
+   "get": {
+    "tags": [
+     "Materials"
+    ],
+    "operationId": "list_4",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MaterialsResponse"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Materials"
+    ],
+    "operationId": "create_1",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/MaterialInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MaterialView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/inspections": {
+   "get": {
+    "tags": [
+     "Inspections"
+    ],
+    "operationId": "list_5",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/InspectionView"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Inspections"
+    ],
+    "operationId": "create_2",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/InspectionInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/InspectionView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/estimates": {
+   "get": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "list_6",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/EstimateView"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "create_3",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EstimateInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/EstimateView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/calendar": {
+   "get": {
+    "tags": [
+     "Calendar"
+    ],
+    "operationId": "range",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "from",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "date"
+      }
+     },
+     {
+      "name": "to",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "date"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/CalendarItem"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Calendar"
+    ],
+    "operationId": "create_4",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EventInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/CalendarItem"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/submit": {
+   "post": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "submit",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProjectView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/proposals": {
+   "get": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "proposals",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/ProposalView"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "propose",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProposalInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProposalView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/members": {
+   "get": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "members",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/MemberView"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "addMember",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/MemberInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MemberView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/complete": {
+   "post": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "complete",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProjectView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/cancel": {
+   "post": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "cancel",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProjectView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/archive": {
+   "post": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "archive",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "archived",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": true
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProjectView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/payments/{id}/sandbox-resolve": {
+   "post": {
+    "tags": [
+     "Payments"
+    ],
+    "operationId": "sandbox",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "boolean"
+        }
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/payments/{id}/refund": {
+   "post": {
+    "tags": [
+     "Payments"
+    ],
+    "operationId": "refund",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/payments/{id}/pay": {
+   "post": {
+    "tags": [
+     "Payments"
+    ],
+    "operationId": "payRequested",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "string",
+         "enum": [
+          "CASH",
+          "CARD",
+          "KASPI",
+          "BANK_TRANSFER"
+         ]
+        }
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/payments/{id}/confirm": {
+   "post": {
+    "tags": [
+     "Payments"
+    ],
+    "operationId": "confirm",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/payments/{id}/cancel": {
+   "post": {
+    "tags": [
+     "Payments"
+    ],
+    "operationId": "cancel_1",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/payments/callbacks/{provider}": {
+   "post": {
+    "tags": [
+     "Payments"
+    ],
+    "operationId": "callback",
+    "parameters": [
+     {
+      "name": "provider",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "string"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PaymentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/notifications/{id}/read": {
+   "post": {
+    "tags": [
+     "Notifications"
+    ],
+    "operationId": "read",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "boolean"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/notifications/read-all": {
+   "post": {
+    "tags": [
+     "Notifications"
+    ],
+    "operationId": "readAll",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "integer",
+          "format": "int32"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/materials/{id}/receive": {
+   "post": {
+    "tags": [
+     "Materials"
+    ],
+    "operationId": "receive",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReceiveInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MaterialView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/materials/{id}/order": {
+   "post": {
+    "tags": [
+     "Materials"
+    ],
+    "operationId": "order",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MaterialView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/materials/{id}/cancel": {
+   "post": {
+    "tags": [
+     "Materials"
+    ],
+    "operationId": "cancel_2",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MaterialView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/estimates/{id}/submit": {
+   "post": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "submit_1",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/EstimateView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/estimates/{id}/revise": {
+   "post": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "revise",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/EstimateView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/estimates/{id}/request-changes": {
+   "post": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "requestChanges",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/EstimateView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/estimates/{id}/reject": {
+   "post": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "reject_1",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/EstimateView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/estimates/{id}/approve": {
+   "post": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "approve",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/EstimateView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/conversations/{id}/read": {
+   "post": {
+    "tags": [
+     "Messages"
+    ],
+    "operationId": "read_1",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "object"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/conversations/{id}/messages": {
+   "get": {
+    "tags": [
+     "Messages"
+    ],
+    "operationId": "history",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "before",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "format": "date-time"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 50
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/MessageView"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Messages"
+    ],
+    "operationId": "send",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SendRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MessageView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/conversations/{id}/attachments": {
+   "post": {
+    "tags": [
+     "Messages"
+    ],
+    "operationId": "attach",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "required": [
+         "file"
+        ],
+        "type": "object",
+        "properties": {
+         "file": {
+          "type": "string",
+          "format": "binary"
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/Attachment"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/conversations/direct/{userId}": {
+   "post": {
+    "tags": [
+     "Messages"
+    ],
+    "operationId": "direct",
+    "parameters": [
+     {
+      "name": "userId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ConversationView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/register": {
+   "post": {
+    "tags": [
+     "Authentication"
+    ],
+    "operationId": "register",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RegisterRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/Tokens"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/refresh": {
+   "post": {
+    "tags": [
+     "Authentication"
+    ],
+    "operationId": "refresh",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RefreshRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/Tokens"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/otp/request": {
+   "post": {
+    "tags": [
+     "Authentication"
+    ],
+    "operationId": "otp",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OtpRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "object"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/otp/login": {
+   "post": {
+    "tags": [
+     "Authentication"
+    ],
+    "operationId": "otpLogin",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OtpLoginRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/Tokens"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/logout": {
+   "post": {
+    "tags": [
+     "Authentication"
+    ],
+    "operationId": "logout",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RefreshRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "boolean"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/logout-all": {
+   "post": {
+    "tags": [
+     "Authentication"
+    ],
+    "operationId": "logoutAll",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "boolean"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/login": {
+   "post": {
+    "tags": [
+     "Authentication"
+    ],
+    "operationId": "login",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/LoginRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/Tokens"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/users/{id}/enabled": {
+   "post": {
+    "tags": [
+     "Administration"
+    ],
+    "operationId": "setEnabled",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "boolean"
+        }
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "boolean"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/masters/{id}/verify": {
+   "post": {
+    "tags": [
+     "Administration"
+    ],
+    "operationId": "verify",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "boolean"
+        }
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MasterView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/stages/{id}": {
+   "patch": {
+    "tags": [
+     "Stages"
+    ],
+    "operationId": "update_3",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/StageUpdate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/StageView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}": {
+   "get": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "get",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProjectView"
+        }
+       }
+      }
+     }
+    }
+   },
+   "patch": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "update_4",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProjectInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ProjectView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/inspections/{id}": {
+   "patch": {
+    "tags": [
+     "Inspections"
+    ],
+    "operationId": "update_5",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/InspectionInput"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/InspectionView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/me": {
+   "get": {
+    "tags": [
+     "Authentication"
+    ],
+    "operationId": "me",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/UserView"
+        }
+       }
+      }
+     }
+    }
+   },
+   "patch": {
+    "tags": [
+     "Authentication"
+    ],
+    "operationId": "update_6",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProfileUpdate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/UserView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/requests/open": {
+   "get": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "open",
+    "parameters": [
+     {
+      "name": "category",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "name": "city",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 0
+      }
+     },
+     {
+      "name": "size",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 20
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PageOpenRequestView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/proposals/mine": {
+   "get": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "mine",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/ProposalView"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{projectId}/conversation": {
+   "get": {
+    "tags": [
+     "Messages"
+    ],
+    "operationId": "project",
+    "parameters": [
+     {
+      "name": "projectId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/ConversationView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/overview": {
+   "get": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "overview",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/Overview"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/events": {
+   "get": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "events",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int64",
+       "default": 0
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 200
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "object"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/activity": {
+   "get": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "activity",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 30
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "object"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/notifications": {
+   "get": {
+    "tags": [
+     "Notifications"
+    ],
+    "operationId": "list_7",
+    "parameters": [
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 0
+      }
+     },
+     {
+      "name": "size",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 30
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PageNotification"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/notifications/unread-count": {
+   "get": {
+    "tags": [
+     "Notifications"
+    ],
+    "operationId": "unread",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "integer",
+          "format": "int64"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/media/{id}/file": {
+   "get": {
+    "tags": [
+     "Media"
+    ],
+    "operationId": "file",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "exp",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "format": "int64"
+      }
+     },
+     {
+      "name": "sig",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "string",
+         "format": "binary"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/masters": {
+   "get": {
+    "tags": [
+     "Masters"
+    ],
+    "operationId": "search",
+    "parameters": [
+     {
+      "name": "category",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "name": "city",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "name": "minRating",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "number"
+      }
+     },
+     {
+      "name": "maxRate",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "number"
+      }
+     },
+     {
+      "name": "minExperience",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32"
+      }
+     },
+     {
+      "name": "verified",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean"
+      }
+     },
+     {
+      "name": "available",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean"
+      }
+     },
+     {
+      "name": "q",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "name": "sort",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 0
+      }
+     },
+     {
+      "name": "size",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 20
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PageMasterView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/masters/{id}": {
+   "get": {
+    "tags": [
+     "Masters"
+    ],
+    "operationId": "get_1",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/MasterView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/masters/{id}/reviews": {
+   "get": {
+    "tags": [
+     "Masters"
+    ],
+    "operationId": "reviews",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/ReviewView"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/estimates/{id}/pdf": {
+   "get": {
+    "tags": [
+     "Estimates"
+    ],
+    "operationId": "pdf",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/pdf": {
+        "schema": {
+         "type": "string",
+         "format": "byte"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/conversations": {
+   "get": {
+    "tags": [
+     "Messages"
+    ],
+    "operationId": "mine_1",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/ConversationView"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/catalog/cities": {
+   "get": {
+    "tags": [
+     "Catalog"
+    ],
+    "operationId": "cities",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/catalog/categories": {
+   "get": {
+    "tags": [
+     "Catalog"
+    ],
+    "operationId": "categories",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/users": {
+   "get": {
+    "tags": [
+     "Administration"
+    ],
+    "operationId": "users",
+    "parameters": [
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 0
+      }
+     },
+     {
+      "name": "size",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 50
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PageUserView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/stats": {
+   "get": {
+    "tags": [
+     "Administration"
+    ],
+    "operationId": "stats",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "object"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/payments": {
+   "get": {
+    "tags": [
+     "Administration"
+    ],
+    "operationId": "payments",
+    "parameters": [
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 0
+      }
+     },
+     {
+      "name": "size",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 50
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "$ref": "#/components/schemas/PagePaymentView"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/audit": {
+   "get": {
+    "tags": [
+     "Administration"
+    ],
+    "operationId": "audit",
+    "parameters": [
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 0
+      }
+     },
+     {
+      "name": "size",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "format": "int32",
+       "default": 100
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/AuditLog"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/projects/{id}/members/{userId}": {
+   "delete": {
+    "tags": [
+     "Projects"
+    ],
+    "operationId": "removeMember",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     {
+      "name": "userId",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "boolean"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/media/{id}": {
+   "delete": {
+    "tags": [
+     "Media"
+    ],
+    "operationId": "delete",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "*/*": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "boolean"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "MaterialInput": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "unit": {
+      "type": "string"
+     },
+     "plannedQty": {
+      "type": "number"
+     },
+     "unitPrice": {
+      "type": "number"
+     },
+     "supplier": {
+      "type": "string"
+     },
+     "deliveryDate": {
+      "type": "string",
+      "format": "date"
+     }
+    }
+   },
+   "MaterialView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "name": {
+      "type": "string"
+     },
+     "unit": {
+      "type": "string"
+     },
+     "plannedQty": {
+      "type": "number"
+     },
+     "unitPrice": {
+      "type": "number"
+     },
+     "plannedCost": {
+      "type": "number"
+     },
+     "actualUnitPrice": {
+      "type": "number"
+     },
+     "actualCost": {
+      "type": "number"
+     },
+     "receivedQty": {
+      "type": "number"
+     },
+     "supplier": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "PLANNED",
+       "ORDERED",
+       "PARTIALLY_DELIVERED",
+       "DELIVERED",
+       "CANCELLED"
+      ]
+     },
+     "deliveryDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "version": {
+      "type": "integer",
+      "format": "int64"
+     }
+    }
+   },
+   "ProfileInput": {
+    "type": "object",
+    "properties": {
+     "specialization": {
+      "type": "string"
+     },
+     "category": {
+      "type": "string"
+     },
+     "bio": {
+      "type": "string"
+     },
+     "experienceYears": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "hourlyRate": {
+      "type": "number"
+     },
+     "available": {
+      "type": "boolean"
+     },
+     "district": {
+      "type": "string"
+     },
+     "companyName": {
+      "type": "string"
+     }
+    }
+   },
+   "MasterView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "fullName": {
+      "type": "string"
+     },
+     "avatarUrl": {
+      "type": "string"
+     },
+     "city": {
+      "type": "string"
+     },
+     "district": {
+      "type": "string"
+     },
+     "specialization": {
+      "type": "string"
+     },
+     "category": {
+      "type": "string"
+     },
+     "bio": {
+      "type": "string"
+     },
+     "experienceYears": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "rating": {
+      "type": "number"
+     },
+     "reviewsCount": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "completedProjects": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "hourlyRate": {
+      "type": "number"
+     },
+     "currency": {
+      "type": "string"
+     },
+     "verified": {
+      "type": "boolean"
+     },
+     "available": {
+      "type": "boolean"
+     },
+     "companyName": {
+      "type": "string"
+     }
+    }
+   },
+   "EstimateInput": {
+    "type": "object",
+    "properties": {
+     "items": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/ItemInput"
+      }
+     },
+     "additionalCosts": {
+      "type": "number"
+     },
+     "discount": {
+      "type": "number"
+     },
+     "taxRate": {
+      "type": "number"
+     }
+    }
+   },
+   "ItemInput": {
+    "type": "object",
+    "properties": {
+     "kind": {
+      "type": "string",
+      "enum": [
+       "LABOR",
+       "MATERIAL",
+       "OTHER"
+      ]
+     },
+     "title": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "quantity": {
+      "type": "number"
+     },
+     "unit": {
+      "type": "string"
+     },
+     "unitPrice": {
+      "type": "number"
+     }
+    }
+   },
+   "EstimateView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "number": {
+      "type": "string"
+     },
+     "version": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "contractorId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "DRAFT",
+       "SUBMITTED",
+       "APPROVED",
+       "REJECTED",
+       "CHANGES_REQUESTED",
+       "SUPERSEDED"
+      ]
+     },
+     "currency": {
+      "type": "string"
+     },
+     "subtotal": {
+      "type": "number"
+     },
+     "additionalCosts": {
+      "type": "number"
+     },
+     "discount": {
+      "type": "number"
+     },
+     "taxRate": {
+      "type": "number"
+     },
+     "taxAmount": {
+      "type": "number"
+     },
+     "total": {
+      "type": "number"
+     },
+     "paid": {
+      "type": "number"
+     },
+     "remaining": {
+      "type": "number"
+     },
+     "reviewComment": {
+      "type": "string"
+     },
+     "approvedAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "items": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/ItemView"
+      }
+     }
+    }
+   },
+   "ItemView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "position": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "kind": {
+      "type": "string",
+      "enum": [
+       "LABOR",
+       "MATERIAL",
+       "OTHER"
+      ]
+     },
+     "title": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "quantity": {
+      "type": "number"
+     },
+     "unit": {
+      "type": "string"
+     },
+     "unitPrice": {
+      "type": "number"
+     },
+     "total": {
+      "type": "number"
+     }
+    }
+   },
+   "EventInput": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string"
+     },
+     "title": {
+      "type": "string"
+     },
+     "startsAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "endsAt": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   },
+   "CalendarItem": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string"
+     },
+     "title": {
+      "type": "string"
+     },
+     "date": {
+      "type": "string",
+      "format": "date"
+     },
+     "startsAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "endsAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "source": {
+      "type": "string"
+     },
+     "refId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "editable": {
+      "type": "boolean"
+     },
+     "status": {
+      "type": "string"
+     }
+    }
+   },
+   "CommentView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "stageId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "authorId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "body": {
+      "type": "string"
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   },
+   "ProposalView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "masterId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "masterName": {
+      "type": "string"
+     },
+     "price": {
+      "type": "number"
+     },
+     "currency": {
+      "type": "string"
+     },
+     "durationDays": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "message": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "PENDING",
+       "ACCEPTED",
+       "REJECTED"
+      ]
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   },
+   "ProjectInput": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "propertyType": {
+      "type": "string"
+     },
+     "rooms": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "areaM2": {
+      "type": "number"
+     },
+     "address": {
+      "type": "string"
+     },
+     "city": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "category": {
+      "type": "string"
+     },
+     "budgetMin": {
+      "type": "number"
+     },
+     "budgetMax": {
+      "type": "number"
+     },
+     "materialsIncluded": {
+      "type": "boolean"
+     },
+     "urgency": {
+      "type": "string"
+     },
+     "startDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "endDate": {
+      "type": "string",
+      "format": "date"
+     }
+    }
+   },
+   "ProjectView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "ownerId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "ownerName": {
+      "type": "string"
+     },
+     "contractorId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "contractorName": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "propertyType": {
+      "type": "string"
+     },
+     "rooms": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "areaM2": {
+      "type": "number"
+     },
+     "address": {
+      "type": "string"
+     },
+     "city": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "category": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "DRAFT",
+       "SUBMITTED",
+       "UNDER_REVIEW",
+       "PROPOSALS_RECEIVED",
+       "CONTRACTOR_SELECTED",
+       "IN_PROGRESS",
+       "COMPLETED",
+       "CANCELLED"
+      ]
+     },
+     "budgetMin": {
+      "type": "number"
+     },
+     "budgetMax": {
+      "type": "number"
+     },
+     "approvedBudget": {
+      "type": "number"
+     },
+     "currency": {
+      "type": "string"
+     },
+     "materialsIncluded": {
+      "type": "boolean"
+     },
+     "urgency": {
+      "type": "string"
+     },
+     "startDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "endDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "archived": {
+      "type": "boolean"
+     },
+     "demo": {
+      "type": "boolean"
+     },
+     "myRole": {
+      "type": "string",
+      "enum": [
+       "OWNER",
+       "CONTRACTOR",
+       "PROJECT_MANAGER",
+       "MASTER",
+       "INSPECTOR",
+       "ADMIN"
+      ]
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   },
+   "StageCreate": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "weight": {
+      "type": "number"
+     },
+     "budget": {
+      "type": "number"
+     },
+     "startDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "endDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "dependsOn": {
+      "type": "string",
+      "format": "uuid"
+     }
+    }
+   },
+   "StageView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "position": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "code": {
+      "type": "string"
+     },
+     "title": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "weight": {
+      "type": "number"
+     },
+     "budget": {
+      "type": "number"
+     },
+     "startDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "endDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "actualEndDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "NOT_STARTED",
+       "IN_PROGRESS",
+       "UNDER_REVIEW",
+       "COMPLETED",
+       "BLOCKED",
+       "DELAYED"
+      ]
+     },
+     "progress": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "dependsOn": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "assigneeId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "version": {
+      "type": "integer",
+      "format": "int64"
+     }
+    }
+   },
+   "ReviewInput": {
+    "type": "object",
+    "properties": {
+     "rating": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "body": {
+      "type": "string"
+     }
+    }
+   },
+   "ReviewView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "authorId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "authorName": {
+      "type": "string"
+     },
+     "rating": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "body": {
+      "type": "string"
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   },
+   "PayRequest": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "enum": [
+       "ADVANCE",
+       "STAGE",
+       "MATERIAL",
+       "FINAL",
+       "ADDITIONAL"
+      ]
+     },
+     "method": {
+      "type": "string",
+      "enum": [
+       "CASH",
+       "CARD",
+       "KASPI",
+       "BANK_TRANSFER"
+      ]
+     },
+     "amount": {
+      "type": "number"
+     },
+     "stageId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "note": {
+      "type": "string"
+     },
+     "idempotencyKey": {
+      "type": "string"
+     }
+    }
+   },
+   "PaymentView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "stageId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "payerId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "requestedBy": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "ADVANCE",
+       "STAGE",
+       "MATERIAL",
+       "FINAL",
+       "ADDITIONAL"
+      ]
+     },
+     "method": {
+      "type": "string",
+      "enum": [
+       "CASH",
+       "CARD",
+       "KASPI",
+       "BANK_TRANSFER"
+      ]
+     },
+     "amount": {
+      "type": "number"
+     },
+     "currency": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "REQUESTED",
+       "PENDING",
+       "PAID",
+       "FAILED",
+       "CANCELLED",
+       "REFUNDED"
+      ]
+     },
+     "provider": {
+      "type": "string"
+     },
+     "providerRef": {
+      "type": "string"
+     },
+     "reference": {
+      "type": "string"
+     },
+     "note": {
+      "type": "string"
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "paidAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "sandbox": {
+      "type": "boolean"
+     }
+    }
+   },
+   "RequestCommand": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "enum": [
+       "ADVANCE",
+       "STAGE",
+       "MATERIAL",
+       "FINAL",
+       "ADDITIONAL"
+      ]
+     },
+     "amount": {
+      "type": "number"
+     },
+     "stageId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "note": {
+      "type": "string"
+     }
+    }
+   },
+   "MediaView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "stageId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "uploaderId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "category": {
+      "type": "string"
+     },
+     "filename": {
+      "type": "string"
+     },
+     "contentType": {
+      "type": "string"
+     },
+     "sizeBytes": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "caption": {
+      "type": "string"
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "url": {
+      "type": "string"
+     }
+    }
+   },
+   "InspectionInput": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string"
+     },
+     "stageId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "inspectionDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "result": {
+      "type": "string",
+      "enum": [
+       "PASSED",
+       "NEEDS_IMPROVEMENT",
+       "FAILED",
+       "PENDING"
+      ]
+     },
+     "comments": {
+      "type": "string"
+     },
+     "correctiveActions": {
+      "type": "string"
+     }
+    }
+   },
+   "InspectionView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "stageId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "title": {
+      "type": "string"
+     },
+     "inspectionDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "inspectorId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "result": {
+      "type": "string",
+      "enum": [
+       "PASSED",
+       "NEEDS_IMPROVEMENT",
+       "FAILED",
+       "PENDING"
+      ]
+     },
+     "comments": {
+      "type": "string"
+     },
+     "correctiveActions": {
+      "type": "string"
+     }
+    }
+   },
+   "ProposalInput": {
+    "type": "object",
+    "properties": {
+     "price": {
+      "type": "number"
+     },
+     "durationDays": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "message": {
+      "type": "string"
+     }
+    }
+   },
+   "MemberInput": {
+    "type": "object",
+    "properties": {
+     "phone": {
+      "type": "string"
+     },
+     "role": {
+      "type": "string",
+      "enum": [
+       "OWNER",
+       "CONTRACTOR",
+       "PROJECT_MANAGER",
+       "MASTER",
+       "INSPECTOR",
+       "ADMIN"
+      ]
+     }
+    }
+   },
+   "MemberView": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "fullName": {
+      "type": "string"
+     },
+     "phone": {
+      "type": "string"
+     },
+     "role": {
+      "type": "string",
+      "enum": [
+       "OWNER",
+       "CONTRACTOR",
+       "PROJECT_MANAGER",
+       "MASTER",
+       "INSPECTOR",
+       "ADMIN"
+      ]
+     }
+    }
+   },
+   "ReceiveInput": {
+    "type": "object",
+    "properties": {
+     "quantity": {
+      "type": "number"
+     },
+     "actualUnitPrice": {
+      "type": "number"
+     },
+     "deliveryDate": {
+      "type": "string",
+      "format": "date"
+     }
+    }
+   },
+   "SendRequest": {
+    "type": "object",
+    "properties": {
+     "body": {
+      "type": "string"
+     },
+     "mediaId": {
+      "type": "string",
+      "format": "uuid"
+     }
+    }
+   },
+   "Attachment": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "filename": {
+      "type": "string"
+     },
+     "contentType": {
+      "type": "string"
+     },
+     "sizeBytes": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "url": {
+      "type": "string"
+     }
+    }
+   },
+   "MessageView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "conversationId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "senderId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "senderName": {
+      "type": "string"
+     },
+     "body": {
+      "type": "string"
+     },
+     "attachment": {
+      "$ref": "#/components/schemas/Attachment"
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "status": {
+      "type": "string"
+     }
+    }
+   },
+   "ConversationView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "title": {
+      "type": "string"
+     },
+     "memberIds": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      }
+     },
+     "lastMessage": {
+      "$ref": "#/components/schemas/MessageView"
+     },
+     "unread": {
+      "type": "integer",
+      "format": "int64"
+     }
+    }
+   },
+   "RegisterRequest": {
+    "required": [
+     "fullName",
+     "password",
+     "phone",
+     "role"
+    ],
+    "type": "object",
+    "properties": {
+     "phone": {
+      "type": "string"
+     },
+     "email": {
+      "type": "string"
+     },
+     "password": {
+      "maxLength": 72,
+      "minLength": 8,
+      "type": "string"
+     },
+     "fullName": {
+      "maxLength": 150,
+      "minLength": 0,
+      "type": "string"
+     },
+     "role": {
+      "type": "string",
+      "enum": [
+       "CUSTOMER",
+       "MASTER",
+       "CONTRACTOR",
+       "COMPANY_ADMIN",
+       "PROJECT_MANAGER",
+       "INSPECTOR",
+       "PLATFORM_ADMIN",
+       "PLATFORM_SUPER_ADMIN"
+      ]
+     },
+     "city": {
+      "type": "string"
+     },
+     "language": {
+      "type": "string"
+     },
+     "otpCode": {
+      "type": "string"
+     }
+    }
+   },
+   "Tokens": {
+    "type": "object",
+    "properties": {
+     "accessToken": {
+      "type": "string"
+     },
+     "refreshToken": {
+      "type": "string"
+     },
+     "expiresInSeconds": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "user": {
+      "$ref": "#/components/schemas/UserView"
+     }
+    }
+   },
+   "UserView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "phone": {
+      "type": "string"
+     },
+     "email": {
+      "type": "string"
+     },
+     "fullName": {
+      "type": "string"
+     },
+     "role": {
+      "type": "string",
+      "enum": [
+       "CUSTOMER",
+       "MASTER",
+       "CONTRACTOR",
+       "COMPANY_ADMIN",
+       "PROJECT_MANAGER",
+       "INSPECTOR",
+       "PLATFORM_ADMIN",
+       "PLATFORM_SUPER_ADMIN"
+      ]
+     },
+     "city": {
+      "type": "string"
+     },
+     "language": {
+      "type": "string"
+     },
+     "avatarUrl": {
+      "type": "string"
+     }
+    }
+   },
+   "RefreshRequest": {
+    "required": [
+     "refreshToken"
+    ],
+    "type": "object",
+    "properties": {
+     "refreshToken": {
+      "type": "string"
+     }
+    }
+   },
+   "OtpRequest": {
+    "required": [
+     "phone"
+    ],
+    "type": "object",
+    "properties": {
+     "phone": {
+      "type": "string"
+     }
+    }
+   },
+   "OtpLoginRequest": {
+    "required": [
+     "code",
+     "phone"
+    ],
+    "type": "object",
+    "properties": {
+     "phone": {
+      "type": "string"
+     },
+     "code": {
+      "type": "string"
+     }
+    }
+   },
+   "LoginRequest": {
+    "required": [
+     "password",
+     "phone"
+    ],
+    "type": "object",
+    "properties": {
+     "phone": {
+      "type": "string"
+     },
+     "password": {
+      "type": "string"
+     }
+    }
+   },
+   "StageUpdate": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "weight": {
+      "type": "number"
+     },
+     "budget": {
+      "type": "number"
+     },
+     "startDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "endDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "progress": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "NOT_STARTED",
+       "IN_PROGRESS",
+       "UNDER_REVIEW",
+       "COMPLETED",
+       "BLOCKED",
+       "DELAYED"
+      ]
+     },
+     "dependsOn": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "assigneeId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "clearDependency": {
+      "type": "boolean"
+     }
+    }
+   },
+   "ProfileUpdate": {
+    "type": "object",
+    "properties": {
+     "fullName": {
+      "maxLength": 150,
+      "minLength": 0,
+      "type": "string"
+     },
+     "city": {
+      "type": "string"
+     },
+     "language": {
+      "type": "string"
+     },
+     "avatarUrl": {
+      "type": "string"
+     }
+    }
+   },
+   "OpenRequestView": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "name": {
+      "type": "string"
+     },
+     "category": {
+      "type": "string"
+     },
+     "propertyType": {
+      "type": "string"
+     },
+     "areaM2": {
+      "type": "number"
+     },
+     "city": {
+      "type": "string"
+     },
+     "budgetMin": {
+      "type": "number"
+     },
+     "budgetMax": {
+      "type": "number"
+     },
+     "description": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "DRAFT",
+       "SUBMITTED",
+       "UNDER_REVIEW",
+       "PROPOSALS_RECEIVED",
+       "CONTRACTOR_SELECTED",
+       "IN_PROGRESS",
+       "COMPLETED",
+       "CANCELLED"
+      ]
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "proposalsCount": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "myProposal": {
+      "type": "string",
+      "enum": [
+       "PENDING",
+       "ACCEPTED",
+       "REJECTED"
+      ]
+     }
+    }
+   },
+   "PageOpenRequestView": {
+    "type": "object",
+    "properties": {
+     "totalPages": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "totalElements": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "pageable": {
+      "$ref": "#/components/schemas/PageableObject"
+     },
+     "first": {
+      "type": "boolean"
+     },
+     "last": {
+      "type": "boolean"
+     },
+     "size": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "content": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/OpenRequestView"
+      }
+     },
+     "number": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "sort": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/SortObject"
+      }
+     },
+     "numberOfElements": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "empty": {
+      "type": "boolean"
+     }
+    }
+   },
+   "PageableObject": {
+    "type": "object",
+    "properties": {
+     "paged": {
+      "type": "boolean"
+     },
+     "pageNumber": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "pageSize": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "offset": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "sort": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/SortObject"
+      }
+     },
+     "unpaged": {
+      "type": "boolean"
+     }
+    }
+   },
+   "SortObject": {
+    "type": "object",
+    "properties": {
+     "direction": {
+      "type": "string"
+     },
+     "nullHandling": {
+      "type": "string"
+     },
+     "ascending": {
+      "type": "boolean"
+     },
+     "property": {
+      "type": "string"
+     },
+     "ignoreCase": {
+      "type": "boolean"
+     }
+    }
+   },
+   "PageProjectView": {
+    "type": "object",
+    "properties": {
+     "totalPages": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "totalElements": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "pageable": {
+      "$ref": "#/components/schemas/PageableObject"
+     },
+     "first": {
+      "type": "boolean"
+     },
+     "last": {
+      "type": "boolean"
+     },
+     "size": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "content": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/ProjectView"
+      }
+     },
+     "number": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "sort": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/SortObject"
+      }
+     },
+     "numberOfElements": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "empty": {
+      "type": "boolean"
+     }
+    }
+   },
+   "MaterialsResponse": {
+    "type": "object",
+    "properties": {
+     "items": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/MaterialView"
+      }
+     },
+     "summary": {
+      "$ref": "#/components/schemas/Summary"
+     }
+    }
+   },
+   "Summary": {
+    "type": "object",
+    "properties": {
+     "plannedCost": {
+      "type": "number"
+     },
+     "actualCost": {
+      "type": "number"
+     },
+     "variance": {
+      "type": "number"
+     },
+     "total": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "delivered": {
+      "type": "integer",
+      "format": "int32"
+     }
+    }
+   },
+   "Counts": {
+    "type": "object",
+    "properties": {
+     "photos": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "pendingEstimates": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "openPaymentRequests": {
+      "type": "integer",
+      "format": "int64"
+     }
+    }
+   },
+   "Finance": {
+    "type": "object",
+    "properties": {
+     "currency": {
+      "type": "string"
+     },
+     "approvedBudget": {
+      "type": "number"
+     },
+     "paid": {
+      "type": "number"
+     },
+     "reserved": {
+      "type": "number"
+     },
+     "remaining": {
+      "type": "number"
+     },
+     "utilizationPercent": {
+      "type": "number"
+     },
+     "materialsPlanned": {
+      "type": "number"
+     },
+     "materialsActual": {
+      "type": "number"
+     },
+     "costBreakdown": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "number"
+      }
+     },
+     "pendingRequests": {
+      "type": "number"
+     }
+    }
+   },
+   "Overview": {
+    "type": "object",
+    "properties": {
+     "project": {
+      "$ref": "#/components/schemas/ProjectView"
+     },
+     "finance": {
+      "$ref": "#/components/schemas/Finance"
+     },
+     "progress": {
+      "$ref": "#/components/schemas/Progress"
+     },
+     "schedule": {
+      "$ref": "#/components/schemas/Schedule"
+     },
+     "quality": {
+      "$ref": "#/components/schemas/Quality"
+     },
+     "counts": {
+      "$ref": "#/components/schemas/Counts"
+     },
+     "lastSeq": {
+      "type": "integer",
+      "format": "int64"
+     }
+    }
+   },
+   "Progress": {
+    "type": "object",
+    "properties": {
+     "percent": {
+      "type": "number"
+     },
+     "stagesTotal": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "stagesCompleted": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "currentStage": {
+      "$ref": "#/components/schemas/StageView"
+     }
+    }
+   },
+   "Quality": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "string"
+     },
+     "inspections": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "byResult": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "integer",
+       "format": "int64"
+      }
+     }
+    }
+   },
+   "Schedule": {
+    "type": "object",
+    "properties": {
+     "startDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "endDate": {
+      "type": "string",
+      "format": "date"
+     },
+     "daysLeft": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "overdueStages": {
+      "type": "integer",
+      "format": "int32"
+     }
+    }
+   },
+   "Notification": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "userId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "projectId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "type": {
+      "type": "string"
+     },
+     "title": {
+      "type": "string"
+     },
+     "body": {
+      "type": "string"
+     },
+     "read": {
+      "type": "boolean"
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   },
+   "PageNotification": {
+    "type": "object",
+    "properties": {
+     "totalPages": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "totalElements": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "pageable": {
+      "$ref": "#/components/schemas/PageableObject"
+     },
+     "first": {
+      "type": "boolean"
+     },
+     "last": {
+      "type": "boolean"
+     },
+     "size": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "content": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/Notification"
+      }
+     },
+     "number": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "sort": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/SortObject"
+      }
+     },
+     "numberOfElements": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "empty": {
+      "type": "boolean"
+     }
+    }
+   },
+   "PageMasterView": {
+    "type": "object",
+    "properties": {
+     "totalPages": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "totalElements": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "pageable": {
+      "$ref": "#/components/schemas/PageableObject"
+     },
+     "first": {
+      "type": "boolean"
+     },
+     "last": {
+      "type": "boolean"
+     },
+     "size": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "content": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/MasterView"
+      }
+     },
+     "number": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "sort": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/SortObject"
+      }
+     },
+     "numberOfElements": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "empty": {
+      "type": "boolean"
+     }
+    }
+   },
+   "PageUserView": {
+    "type": "object",
+    "properties": {
+     "totalPages": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "totalElements": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "pageable": {
+      "$ref": "#/components/schemas/PageableObject"
+     },
+     "first": {
+      "type": "boolean"
+     },
+     "last": {
+      "type": "boolean"
+     },
+     "size": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "content": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/UserView"
+      }
+     },
+     "number": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "sort": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/SortObject"
+      }
+     },
+     "numberOfElements": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "empty": {
+      "type": "boolean"
+     }
+    }
+   },
+   "PagePaymentView": {
+    "type": "object",
+    "properties": {
+     "totalPages": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "totalElements": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "pageable": {
+      "$ref": "#/components/schemas/PageableObject"
+     },
+     "first": {
+      "type": "boolean"
+     },
+     "last": {
+      "type": "boolean"
+     },
+     "size": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "content": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/PaymentView"
+      }
+     },
+     "number": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "sort": {
+      "type": "array",
+      "items": {
+       "$ref": "#/components/schemas/SortObject"
+      }
+     },
+     "numberOfElements": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "empty": {
+      "type": "boolean"
+     }
+    }
+   },
+   "AuditLog": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "format": "int64"
+     },
+     "actorId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "action": {
+      "type": "string"
+     },
+     "entityType": {
+      "type": "string"
+     },
+     "entityId": {
+      "type": "string",
+      "format": "uuid"
+     },
+     "detail": {
+      "type": "string"
+     },
+     "createdAt": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   }
+  }
+ }
+}

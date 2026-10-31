@@ -61,3 +61,10 @@ jondeu:
     sandbox-enabled: true
     sandbox-secret: dev-sandbox-secret
   demo.enabled: ${DEMO_ENABLED:true}
+---
+spring.config.activate.on-profile: prod
+jondeu:
+  otp: { required: true, expose-dev-code: false }
+  payments.sandbox-enabled: false
+  demo.enabled: false
+logging.level.root: INFO
