@@ -1,0 +1,10 @@
+spring:
+  jpa.show-sql: false
+jondeu:
+  jwt.secret: test-secret-test-secret-test-secret-test-secret
+  otp: { required: false, expose-dev-code: true }
+  payments: { sandbox-enabled: true, sandbox-secret: test-sandbox-secret }
+  storage.local-dir: target/test-uploads
+  demo.enabled: false
+  rate-limit.auth-per-minute: 100000
+  cors.allowed-origins: http://localhost:3000

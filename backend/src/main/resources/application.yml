@@ -1,0 +1,70 @@
+spring:
+  application.name: jondeu-backend
+  profiles.default: dev
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/jondeu}
+    username: ${DB_USER:jondeu}
+    password: ${DB_PASSWORD:jondeu}
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: validate
+    properties.hibernate.jdbc.time_zone: UTC
+  flyway.enabled: true
+  jackson:
+    serialization.write-dates-as-timestamps: false
+    generator.write-bigdecimal-as-plain: true
+    default-property-inclusion: non_null
+  servlet.multipart:
+    max-file-size: 15MB
+    max-request-size: 20MB
+server:
+  port: 8080
+  forward-headers-strategy: framework
+  error.include-message: never
+management:
+  endpoints.web.exposure.include: health,info
+  endpoint.health:
+    probes.enabled: true
+    show-details: never
+springdoc:
+  api-docs.path: /v3/api-docs
+  swagger-ui.path: /swagger-ui.html
+jondeu:
+  jwt:
+    secret: ${JWT_SECRET:}
+    access-ttl-minutes: 30
+    refresh-ttl-days: 30
+  cors.allowed-origins: ${CORS_ORIGINS:http://localhost:3000}
+  otp:
+    required: ${OTP_REQUIRED:true}
+    expose-dev-code: false
+  storage:
+    local-dir: ${STORAGE_DIR:./data/uploads}
+    max-bytes: 15728640
+  payments:
+    sandbox-enabled: false
+    sandbox-secret: ${SANDBOX_PAYMENT_SECRET:}
+    kaspi-merchant-id: ${KASPI_MERCHANT_ID:}
+    kaspi-api-key: ${KASPI_API_KEY:}
+  demo.enabled: false
+  rate-limit.auth-per-minute: 30
+logging:
+  level.kz.jondeu: INFO
+---
+spring.config.activate.on-profile: dev
+jondeu:
+  jwt.secret: ${JWT_SECRET:dev-only-secret-change-me-dev-only-secret-change-me}
+  otp:
+    required: false
+    expose-dev-code: true
+  payments:
+    sandbox-enabled: true
+    sandbox-secret: dev-sandbox-secret
+  demo.enabled: ${DEMO_ENABLED:true}
+---
+spring.config.activate.on-profile: prod
+jondeu:
+  otp: { required: true, expose-dev-code: false }
+  payments.sandbox-enabled: false
+  demo.enabled: false
+logging.level.root: INFO
