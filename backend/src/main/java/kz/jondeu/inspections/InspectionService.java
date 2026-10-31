@@ -40,6 +40,10 @@ public class InspectionService {
         return "PASSED";
     }
 
+    private static String ru(Result r) {
+        return switch (r) { case PASSED -> "пройдена"; case NEEDS_IMPROVEMENT -> "нужны доработки"; case FAILED -> "не пройдена"; case PENDING -> "ожидается"; };
+    }
+
     @Transactional(readOnly = true)
     public List<InspectionView> list(UUID projectId, AuthUser u) {
         access.require(projectId, u, Perm.VIEW);
@@ -56,7 +60,7 @@ public class InspectionService {
         i.setInspectorId(u.id()); i.setResult(in.result() == null ? Result.PENDING : in.result());
         i.setComments(in.comments()); i.setCorrectiveActions(in.correctiveActions());
         repo.save(i);
-        events.publish(projectId, "INSPECTION_CREATED", "inspection", i.getId(), u.id(), "Инспекция: " + i.getTitle() + " — " + i.getResult());
+        events.publish(projectId, "INSPECTION_CREATED", "inspection", i.getId(), u.id(), "Инспекция: " + i.getTitle() + " — " + ru(i.getResult()));
         notifier.project(projectId, u.id(), "INSPECTION_SCHEDULED", "Инспекция", i.getTitle() + " — " + i.getInspectionDate());
         return InspectionView.of(i);
     }
@@ -72,7 +76,7 @@ public class InspectionService {
         if (in.result() != null) i.setResult(in.result());
         i.setInspectorId(u.id());
         repo.save(i);
-        events.publish(i.getProjectId(), "INSPECTION_UPDATED", "inspection", id, u.id(), "Инспекция «" + i.getTitle() + "»: " + i.getResult());
+        events.publish(i.getProjectId(), "INSPECTION_UPDATED", "inspection", id, u.id(), "Инспекция «" + i.getTitle() + "»: " + ru(i.getResult()));
         if (i.getResult() == Result.FAILED || i.getResult() == Result.NEEDS_IMPROVEMENT) {
             notifier.project(i.getProjectId(), u.id(), "INSPECTION_ISSUE", "Замечания по качеству", i.getTitle());
         }
