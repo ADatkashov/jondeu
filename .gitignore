@@ -1,0 +1,16 @@
+target/
+node_modules/
+.next/
+out/
+build/
+.dart_tool/
+.flutter-plugins*
+*.iml
+.idea/
+.vscode/
+data/
+.env
+.env.local
+*.log
+.DS_Store
+coverage/
