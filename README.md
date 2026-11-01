@@ -54,5 +54,10 @@ JWT access (30 мин) + **ротация refresh-токенов с обнару
 rate limit на `/auth`; валидация загрузок по magic bytes, подписанные временные URL на файлы; финансы — `BigDecimal`, append-only ledger, блокировка строки проекта, idempotency;
 секреты только из переменных окружения; в `prod` профиле выключены sandbox-платежи, демо-данные и dev-OTP.
 
+## Скриншоты
+Веб-дашборд на демо-данных (`docs/screenshots/`, 1440 px; последний файл — узкий экран):
+![Обзор](docs/screenshots/01-dashboard.png)
+Остальные: `00-login`, `02-projects`, `03-estimates`, `04-stages`, `05-materials`, `06-calendar`, `07-photos`, `08-quality`, `09-messages`, `10-documents`, `11-payments`, `12-masters`, `13-reports`, `14-settings`, `15-dashboard-mobile-width`.
+
 ## Документация
 `docs/STATUS.md` — **честный статус реализации и следующие шаги** · `docs/PAYMENTS.md` · `docs/openapi.json` (и `/swagger-ui.html`).
