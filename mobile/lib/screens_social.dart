@@ -38,7 +38,7 @@ class _MastersScreenState extends ConsumerState<MastersScreen> {
         Expanded(child: Async<dynamic>(ref.watch(_mastersProvider(query.entries.map((e) => '${e.key}=${e.value}').join('&'))), onRetry: () => ref.invalidate(_mastersProvider), data: (d) {
           final list = (d['content'] as List).cast<Json>();
           if (list.isEmpty) return Empty(s.t('noRequests'));
-          return ListView.separated(padding: const EdgeInsets.all(16), itemCount: list.length, separatorBuilder: (_, __) => const SizedBox(height: 10), itemBuilder: (_, i) => _MasterCard(m: list[i]));
+          return ListView.separated(padding: const EdgeInsets.all(16), itemCount: list.length, separatorBuilder: (_, _) => const SizedBox(height: 10), itemBuilder: (_, i) => _MasterCard(m: list[i]));
         })),
       ]),
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jondeu_app/core/api.dart';
-import 'package:jondeu_app/core/i18n.dart';
 import 'package:jondeu_app/core/tokens.dart';
 import 'package:jondeu_app/screens_auth.dart';
 import 'package:jondeu_app/screens_project.dart';

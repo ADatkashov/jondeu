@@ -29,7 +29,7 @@ class StagesScreen extends ConsumerWidget {
       body: Async<dynamic>(ref.watch(projectResource('stages', pid)), onRetry: () => ref.invalidate(projectResource('stages', pid)), data: (list) {
         final stages = (list as List).cast<Json>();
         if (stages.isEmpty) return Empty(s.t('noStages'));
-        return ListView.separated(padding: const EdgeInsets.all(16), itemCount: stages.length, separatorBuilder: (_, __) => const SizedBox(height: 10), itemBuilder: (_, i) {
+        return ListView.separated(padding: const EdgeInsets.all(16), itemCount: stages.length, separatorBuilder: (_, _) => const SizedBox(height: 10), itemBuilder: (_, i) {
           final st = stages[i];
           final status = st['status'] as String;
           return Panel(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -256,7 +256,7 @@ class PhotosScreen extends ConsumerWidget {
         return GridView.builder(padding: const EdgeInsets.all(12), gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10, childAspectRatio: .95), itemCount: imgs.length, itemBuilder: (_, i) {
           final m = imgs[i];
           return ClipRRect(borderRadius: BorderRadius.circular(14), child: Stack(fit: StackFit.expand, children: [
-            Image.network(mediaUrl(m['url'] as String), fit: BoxFit.cover, errorBuilder: (_, __, ___) => const ColoredBox(color: T.line, child: Icon(Icons.broken_image))),
+            Image.network(mediaUrl(m['url'] as String), fit: BoxFit.cover, errorBuilder: (_, _, _) => const ColoredBox(color: T.line, child: Icon(Icons.broken_image))),
             Positioned(left: 0, right: 0, bottom: 0, child: Container(color: Colors.black54, padding: const EdgeInsets.all(6), child: Text('${m['caption'] ?? m['filename']}', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontSize: 12)))),
           ]));
         });
