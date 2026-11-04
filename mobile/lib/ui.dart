@@ -30,7 +30,7 @@ class Panel extends StatelessWidget {
         child: Padding(
           padding: padding,
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            if (title != null) Padding(padding: const EdgeInsets.only(bottom: 10), child: Row(children: [Expanded(child: Text(title!, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15))), if (trailing != null) trailing!])),
+            if (title != null) Padding(padding: const EdgeInsets.only(bottom: 10), child: Row(children: [Expanded(child: Text(title!, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15))), ?trailing])),
             child,
           ]),
         ),

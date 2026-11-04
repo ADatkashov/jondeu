@@ -1,0 +1,98 @@
+name: Android APK
+
+# Builds the Flutter app (mobile/) into an APK on every push to main and by hand,
+# attaches it to the run (Artifacts, 14 days) and publishes it as a GitHub Release
+# with a stable download link (open the Releases tab from a phone and tap the .apk).
+#
+# Signing: if the secrets below exist the APK is release-signed, otherwise it is
+# debug-signed (installable for QA, not for Google Play).
+#   ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD
+# Backend URL baked into the app: repo variable API_URL (Settings -> Variables), or the
+# workflow_dispatch input. Without either the app falls back to http://10.0.2.2:8080 (emulator only).
+on:
+  push:
+    branches: [main]
+    paths: ['mobile/**', '.github/workflows/android-apk.yml']
+  workflow_dispatch:
+    inputs:
+      api_url:
+        description: Backend base URL to bake in (e.g. https://api.example.com)
+        required: false
+        type: string
+
+concurrency:
+  group: android-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write   # needed only to create the GitHub Release
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    defaults: { run: { working-directory: mobile } }
+    env:
+      API_URL: ${{ inputs.api_url || vars.API_URL }}
+      KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '21' }
+      - uses: subosito/flutter-action@v2
+        with: { channel: stable, cache: true }
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+      - name: Set up release signing (if secrets are present)
+        if: env.KEYSTORE_B64 != ''
+        env:
+          STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/keystore"
+          echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/keystore/release.jks"
+          cat > android/key.properties <<PROPS
+          storeFile=$RUNNER_TEMP/keystore/release.jks
+          storePassword=$STORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEY_PASSWORD
+          PROPS
+
+      - name: Build APK
+        run: |
+          flutter build apk --release --build-number=${{ github.run_number }} \
+            ${API_URL:+--dart-define=API_URL=$API_URL}
+
+      - name: Name the APK
+        id: apk
+        run: |
+          ver=$(grep '^version:' pubspec.yaml | sed 's/version: *//' | cut -d+ -f1 | tr -d '[:space:]')
+          sign=$([ -n "$KEYSTORE_B64" ] && echo release-signed || echo debug-signed)
+          mkdir -p ../apk-out
+          cp build/app/outputs/flutter-apk/app-release.apk "../apk-out/jondeu-$ver-$sign.apk"
+          echo "ver=$ver" >> "$GITHUB_OUTPUT"
+          echo "sign=$sign" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jondeu-apk
+          path: apk-out/*.apk
+          retention-days: 14
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.apk.outputs.ver }}-${{ github.run_number }}
+          name: JONDEU v${{ steps.apk.outputs.ver }} (build ${{ github.run_number }})
+          target_commitish: ${{ github.sha }}
+          files: apk-out/*.apk
+          body: |
+            ${{ steps.apk.outputs.sign }} APK from commit `${{ github.sha }}`.
+            Backend URL: `${{ env.API_URL != '' && env.API_URL || 'default (10.0.2.2:8080, emulator only)' }}`
+
+      - name: Remove keystore
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/keystore" android/key.properties

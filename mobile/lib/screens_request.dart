@@ -80,7 +80,7 @@ class _RequestWizardState extends ConsumerState<RequestWizard> {
       Form(key: keys[3], child: ListTile(contentPadding: EdgeInsets.zero, title: Text(s.t('startDate')), subtitle: Text(start == null ? '—' : s.date(start!.toIso8601String())), trailing: const Icon(Icons.calendar_month),
           onTap: () async { final d = await showDatePicker(context: context, firstDate: DateTime.now(), lastDate: DateTime.now().add(const Duration(days: 730)), initialDate: start ?? DateTime.now()); if (d != null) setState(() => start = d); })),
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        for (final (k, v) in [(s.t('projectName'), name.text), (s.t('address'), address.text), (s.t('area'), area.text), (s.t('category'), '${category ?? ''}'), (s.t('description'), desc.text), (s.t('budget'), '${bMin.text} – ${bMax.text} ₸')])
+        for (final (k, v) in [(s.t('projectName'), name.text), (s.t('address'), address.text), (s.t('area'), area.text), (s.t('category'), category ?? ''), (s.t('description'), desc.text), (s.t('budget'), '${bMin.text} – ${bMax.text} ₸')])
           Padding(padding: const EdgeInsets.only(bottom: 10), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(k, style: const TextStyle(color: T.inkSoft, fontSize: 12)), Text(v, style: const TextStyle(fontWeight: FontWeight.w600))])),
       ]),
     ];
@@ -114,7 +114,7 @@ class OpenRequestsScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(s.t('openRequests'))),
       body: RefreshIndicator(onRefresh: () async => ref.refresh(openRequestsProvider.future), child: Async<List<Json>>(ref.watch(openRequestsProvider), onRetry: () => ref.invalidate(openRequestsProvider), data: (list) => list.isEmpty
           ? ListView(children: [SizedBox(height: 400, child: Empty(s.t('noRequests')))])
-          : ListView.separated(padding: const EdgeInsets.all(16), itemCount: list.length, separatorBuilder: (_, __) => const SizedBox(height: 10), itemBuilder: (_, i) {
+          : ListView.separated(padding: const EdgeInsets.all(16), itemCount: list.length, separatorBuilder: (_, _) => const SizedBox(height: 10), itemBuilder: (_, i) {
               final r = list[i];
               return Panel(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Row(children: [Expanded(child: Text('${r['name']}', style: const TextStyle(fontWeight: FontWeight.w700))), StatusChip(r['status'] as String)]),

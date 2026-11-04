@@ -74,7 +74,7 @@ class _ProjectsTab extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(s.t('projects'))),
       floatingActionButton: isProRole(user?['role'] as String?) ? null : FloatingActionButton.extended(onPressed: onWizard, icon: const Icon(Icons.add), label: Text(s.t('newRequest'))),
-      body: Async<List<Json>>(ref.watch(projectsProvider), onRetry: () => ref.invalidate(projectsProvider), data: (list) => list.isEmpty ? Empty(s.t('noProjects'), hint: s.t('noProjectsHint')) : ListView.separated(padding: const EdgeInsets.all(16), itemCount: list.length, separatorBuilder: (_, __) => const SizedBox(height: 10), itemBuilder: (_, i) {
+      body: Async<List<Json>>(ref.watch(projectsProvider), onRetry: () => ref.invalidate(projectsProvider), data: (list) => list.isEmpty ? Empty(s.t('noProjects'), hint: s.t('noProjectsHint')) : ListView.separated(padding: const EdgeInsets.all(16), itemCount: list.length, separatorBuilder: (_, _) => const SizedBox(height: 10), itemBuilder: (_, i) {
         final p = list[i];
         final open = ['SUBMITTED', 'UNDER_REVIEW', 'PROPOSALS_RECEIVED'].contains(p['status']) && p['myRole'] == 'OWNER';
         return InkWell(borderRadius: BorderRadius.circular(16), onTap: () => open ? Navigator.push(context, MaterialPageRoute(builder: (_) => ProposalsScreen(project: p))) : ref.read(selectedProjectProvider.notifier).set(p['id'] as String), child: Panel(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
